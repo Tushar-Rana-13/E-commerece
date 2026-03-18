@@ -1,0 +1,13 @@
+.productRow{
+margin:30px 0;
+}
+
+.productRow h2{
+margin-bottom:15px;
+}
+
+.rowProducts{
+display:flex;
+gap:15px;
+overflow-x:auto;
+}

@@ -1,0 +1,18 @@
+.category-bar {
+    display : flex ;
+    gap : 20px ;
+    padding : 10px 5% ;
+    background-color : #232f3e ;
+    color : white ;
+    font-size : 14px ;
+    overflow-x: auto;
+}
+
+.category-bar span{
+    cursor : pointer ;
+    white-space : nowrap ;
+}
+
+.category-bar span:hover {
+    text-decoration: underline;
+}

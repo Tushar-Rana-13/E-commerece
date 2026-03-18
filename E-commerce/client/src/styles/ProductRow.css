@@ -1,0 +1,16 @@
+.product-row {
+  background: white;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 5px;
+}
+
+.product-row h2 {
+  margin-bottom: 15px;
+}
+
+.row-products {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+}

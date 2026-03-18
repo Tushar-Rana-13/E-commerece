@@ -1,0 +1,53 @@
+.navbar{
+background:#131921;
+color:white;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:10px 5%;
+}
+
+.logo h2{
+cursor:pointer;
+}
+
+.searchBar{
+display:flex;
+width:45%;
+}
+
+.searchBar input{
+flex:1;
+padding:10px;
+border:none;
+outline:none;
+}
+
+.searchBar button{
+background:#febd69;
+border:none;
+padding:10px 15px;
+cursor:pointer;
+}
+
+.navRight{
+display:flex;
+gap:25px;
+align-items:center;
+}
+
+.navItem{
+font-size:12px;
+cursor:pointer;
+}
+
+.navItem strong{
+font-size:14px;
+}
+
+.cart{
+display:flex;
+align-items:center;
+gap:5px;
+cursor:pointer;
+}

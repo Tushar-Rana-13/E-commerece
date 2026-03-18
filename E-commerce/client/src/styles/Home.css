@@ -1,0 +1,14 @@
+.home {
+  background-color: #eaeded;
+}
+
+.hero img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.home-content {
+  margin-top: -150px;
+  padding: 0 5%;
+}

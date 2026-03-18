@@ -1,0 +1,29 @@
+.adminContainer{
+display:flex;
+min-height:100vh;
+}
+
+.adminSidebar{
+width:220px;
+background:#0f172a;
+color:white;
+padding:20px;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.adminSidebar a{
+color:white;
+text-decoration:none;
+}
+
+.adminSidebar a:hover{
+color:#38bdf8;
+}
+
+.adminContent{
+flex:1;
+padding:30px;
+background:#f1f5f9;
+}

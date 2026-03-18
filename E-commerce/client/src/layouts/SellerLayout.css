@@ -1,0 +1,29 @@
+.sellerContainer{
+display:flex;
+min-height:100vh;
+}
+
+.sellerSidebar{
+width:220px;
+background:#1e293b;
+color:white;
+padding:20px;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.sellerSidebar a{
+color:white;
+text-decoration:none;
+}
+
+.sellerSidebar a:hover{
+color:#38bdf8;
+}
+
+.sellerContent{
+flex:1;
+padding:30px;
+background:#f8fafc;
+}

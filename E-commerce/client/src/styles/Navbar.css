@@ -1,0 +1,55 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #131921;
+  padding: 10px 5%;
+  color: white;
+}
+
+.nav-logo h2 {
+  cursor: pointer;
+}
+
+.nav-search {
+  display: flex;
+  width: 50%;
+}
+
+.nav-search input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+.nav-search button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #febd69;
+  cursor: pointer;
+}
+
+.nav-right {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.nav-item strong {
+  font-size: 14px;
+}
+
+.nav-cart {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
