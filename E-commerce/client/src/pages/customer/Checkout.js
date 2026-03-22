@@ -1,33 +1,19 @@
-function Checkout(){
+import React from "react";
 
-return(
+const Checkout = () => {
+  return (
+    <div>
+      <h1>Checkout</h1>
 
-<div style={{padding:"40px"}}>
+      <form>
+        <input type="text" placeholder="Full Name" />
+        <input type="text" placeholder="Address" />
+        <input type="text" placeholder="Card Number" />
 
-<h1>Checkout</h1>
+        <button type="submit">Place Order</button>
+      </form>
+    </div>
+  );
+};
 
-<form>
-
-<input placeholder="Full Name"/>
-
-<br/><br/>
-
-<input placeholder="Address"/>
-
-<br/><br/>
-
-<input placeholder="Card Number"/>
-
-<br/><br/>
-
-<button>Place Order</button>
-
-</form>
-
-</div>
-
-)
-
-}
-
-export default Checkout
+export default Checkout;

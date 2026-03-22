@@ -12,7 +12,7 @@ return(
 
 <h1>Search Results</h1>
 
-<p>Showing results for: <strong>{searchTerm}</strong></p>
+<p>Results for: {searchTerm}</p>
 
 </div>
 
