@@ -1,14 +1,31 @@
-import "../../styles/ProductCard.css";
+import { useNavigate } from "react-router-dom"
 
-function ProductCard({ title, price, image }) {
-  return (
-    <div className="product-card">
-      <img src={image} alt={title} />
-      <h4>{title}</h4>
-      <p className="price">${price}</p>
-      <button>Add to Cart</button>
-    </div>
-  );
+function ProductCard({product}){
+
+const navigate = useNavigate()
+
+return(
+
+<div 
+onClick={()=>navigate(`/product/${product._id}`)}
+style={{
+border:"1px solid #ccc",
+padding:"10px",
+cursor:"pointer",
+width:"200px"
+}}>
+
+{product.image && (
+<img src={product.image} alt="" style={{width:"100%"}}/>
+)}
+
+<h4>{product.title}</h4>
+<p>₹{product.price}</p>
+
+</div>
+
+)
+
 }
 
-export default ProductCard;
+export default ProductCard

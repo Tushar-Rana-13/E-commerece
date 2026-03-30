@@ -1,4 +1,4 @@
-import Order from "../models/Order.js"
+import Order from "../models/Orders.js"
 import Product from "../models/Product.js"
 
 // PLACE ORDER (Customer)

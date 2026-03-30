@@ -1,46 +1,99 @@
 import "./Navbar.css"
 import { FaShoppingCart } from "react-icons/fa"
+import { Link, useNavigate } from "react-router-dom"
+import { useContext, useState } from "react"
+import { CartContext } from "../../../context/CartContext"
 
 function Navbar(){
 
-return(
+  const { cart } = useContext(CartContext)
+  const navigate = useNavigate()
 
-<nav className="navbar">
+  const [search, setSearch] = useState("")
 
-<div className="logo">
-<h2>ShopSphere</h2>
-</div>
+  const user = JSON.parse(localStorage.getItem("user"))
 
-<div className="searchBar">
+  const totalItems = cart.reduce(
+    (total, item) => total + item.quantity, 0
+  )
 
-<input placeholder="Search products"/>
+  const handleLogout = ()=>{
+    localStorage.removeItem("token")
+    localStorage.removeItem("user")
+    navigate("/")
+    window.location.reload()
+  }
 
-<button>Search</button>
+  const handleSearch = ()=>{
+    if(search.trim()){
+      navigate(`/search?q=${search}`)
+    }
+  }
 
-</div>
+  return(
 
-<div className="navRight">
+    <nav className="navbar">
 
-<div className="navItem">
-<p>Hello, Sign in</p>
-<strong>Account</strong>
-</div>
+      {/* LOGO */}
+      <Link to="/" className="logo" style={{textDecoration:"none", color:"white"}}>
+        <h2>ShopSphere</h2>
+      </Link>
 
-<div className="navItem">
-<p>Returns</p>
-<strong>& Orders</strong>
-</div>
+      {/* SEARCH */}
+      <div className="searchBar">
+        <input 
+          placeholder="Search products"
+          onChange={(e)=>setSearch(e.target.value)}
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
 
-<div className="cart">
-<FaShoppingCart/>
-<span>Cart</span>
-</div>
+      {/* RIGHT */}
+      <div className="navRight">
 
-</div>
+        {/* USER */}
+        {user ? (
 
-</nav>
+          <div className="navItem">
+            <p>Hello, {user.name}</p>
+            <strong 
+              onClick={handleLogout} 
+              style={{cursor:"pointer"}}
+            >
+              Logout
+            </strong>
+          </div>
 
-)
+        ) : (
+
+          <Link to="/login" style={{textDecoration:"none", color:"white"}}>
+            <div className="navItem">
+              <p>Hello, Sign in</p>
+              <strong>Account</strong>
+            </div>
+          </Link>
+
+        )}
+
+        {/* ORDERS */}
+        <Link to="/orders" style={{textDecoration:"none", color:"white"}}>
+          <div className="navItem">
+            <p>Returns</p>
+            <strong>& Orders</strong>
+          </div>
+        </Link>
+
+        {/* CART */}
+        <Link to="/cart" className="cart" style={{textDecoration:"none", color:"white"}}>
+          <FaShoppingCart/>
+          <span>Cart ({totalItems})</span>
+        </Link>
+
+      </div>
+
+    </nav>
+
+  )
 
 }
 

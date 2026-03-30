@@ -1,19 +1,48 @@
-import React from "react";
+import { useContext } from "react"
+import { CartContext } from "../../context/CartContext"
+import { useNavigate } from "react-router-dom"
 
-const Cart = () => {
-  return (
-    <div>
-      <h1>Your Cart</h1>
+function Cart(){
 
-      <div className="cart-item">
-        <h3>Product Name</h3>
-        <p>$100</p>
-        <button>Remove</button>
-      </div>
+const { cart, removeFromCart } = useContext(CartContext)
+const navigate = useNavigate()
 
-      <button>Proceed to Checkout</button>
-    </div>
-  );
-};
+return(
 
-export default Cart;
+<div style={{padding:"20px"}}>
+
+<h1>Your Cart</h1>
+
+{cart.length === 0 ? (
+<p>Cart is empty</p>
+) : (
+
+<>
+{cart.map(item=>(
+<div key={item._id} style={{marginBottom:"20px"}}>
+
+<h3>{item.title}</h3>
+<p>₹{item.price}</p>
+
+<button onClick={()=>removeFromCart(item._id)}>
+Remove
+</button>
+
+</div>
+))}
+
+<button onClick={()=>navigate("/checkout")}>
+Proceed to Checkout
+</button>
+
+</>
+
+)}
+
+</div>
+
+)
+
+}
+
+export default Cart

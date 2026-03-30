@@ -1,19 +1,56 @@
-import React from "react";
+import { useContext } from "react"
+import axios from "axios"
+import API from "../../api"
+import { CartContext } from "../../context/CartContext"
 
-const Checkout = () => {
-  return (
-    <div>
-      <h1>Checkout</h1>
+function Checkout(){
 
-      <form>
-        <input type="text" placeholder="Full Name" />
-        <input type="text" placeholder="Address" />
-        <input type="text" placeholder="Card Number" />
+const { cart, clearCart } = useContext(CartContext)
 
-        <button type="submit">Place Order</button>
-      </form>
-    </div>
-  );
-};
+const placeOrder = async ()=>{
 
-export default Checkout;
+try{
+
+const token = localStorage.getItem("token")
+
+const products = cart.map(item => ({
+product: item._id,
+quantity: item.quantity || 1
+}))
+
+await axios.post(`${API}/orders`,
+{ products },
+{
+headers:{
+Authorization:`Bearer ${token}`
+}
+}
+)
+
+alert("Order placed successfully")
+
+clearCart()
+
+}catch(err){
+alert(err.response?.data?.message || "Error placing order")
+}
+
+}
+
+return(
+
+<div style={{padding:"20px"}}>
+
+<h2>Checkout</h2>
+
+<button onClick={placeOrder}>
+Place Order
+</button>
+
+</div>
+
+)
+
+}
+
+export default Checkout

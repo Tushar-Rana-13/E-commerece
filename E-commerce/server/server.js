@@ -17,7 +17,7 @@ app.use(cors()) ;
   
 app.use("/api/auth" , authRoutes) ;
 app.use("/api/products" , ProductRoutes) ;
-app.use("/api/orders",orderRoutes) ;
+app.use("/api/orders", orderRoutes) ;
 
 app.get("/" , (req , res) => {
     res.send("Server is working") ;
