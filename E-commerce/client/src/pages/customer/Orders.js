@@ -6,10 +6,8 @@ function Orders(){
 
 const [orders,setOrders] = useState([])
 
-useEffect(()=>{
-
+// ✅ Fetch Orders
 const fetchOrders = async ()=>{
-
 try{
 
 const token = localStorage.getItem("token")
@@ -25,11 +23,30 @@ setOrders(res.data)
 }catch(err){
 console.log(err)
 }
-
 }
 
-fetchOrders()
+// ✅ Cancel Order
+const cancelOrder = async (id)=>{
+try{
 
+const token = localStorage.getItem("token")
+
+await axios.put(`${API}/orders/cancel/${id}`,{},{
+headers:{ Authorization:`Bearer ${token}` }
+})
+
+alert("Order cancelled")
+
+fetchOrders()  // refresh list
+
+}catch(err){
+console.log(err)
+}
+}
+
+// ✅ Load on mount
+useEffect(()=>{
+fetchOrders()
 },[])
 
 return(
@@ -48,6 +65,13 @@ orders.map(order=>(
 <h3>Order ID: {order._id}</h3>
 <p>Total: ₹{order.totalAmount}</p>
 <p>Status: {order.status}</p>
+
+{/* Disable cancel if delivered */}
+{order.status !== "Delivered" && order.status !== "Cancelled" && (
+<button onClick={()=>cancelOrder(order._id)}>
+Cancel Order
+</button>
+)}
 
 </div>
 ))

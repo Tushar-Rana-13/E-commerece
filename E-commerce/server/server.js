@@ -5,6 +5,7 @@ import connectDB from "./config/db.js" ;
 import authRoutes from "./routes/authRoutes.js"
 import ProductRoutes from "./routes/ProductRoute.js" ;
 import orderRoutes from "./routes/orderRoutes.js" ;
+import path from "path" ;
 
 connectDB() ;
 dotenv.config() ;
@@ -14,6 +15,8 @@ const app = express() ;
 // Middleware 
 app.use(express.json()) ;
 app.use(cors()) ; 
+app.use("/uploads", express.static(path.join("uploads"))) ;
+
   
 app.use("/api/auth" , authRoutes) ;
 app.use("/api/products" , ProductRoutes) ;

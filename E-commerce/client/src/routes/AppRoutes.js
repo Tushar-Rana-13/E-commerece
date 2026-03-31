@@ -21,6 +21,7 @@ import Dashboard from "../pages/seller/Dashboard"
 import Products from "../pages/seller/Products"
 import AddProduct from "../pages/seller/AddProduct"
 import SellerOrders from "../pages/seller/Sellerorders"
+import SellerRoute from "./SellerRoutes"
 
 // Admin
 import AdminLayout from "../layouts/AdminLayout"
@@ -63,11 +64,18 @@ function AppRoutes() {
 
             {/* SELLER */}
             <Route path="/seller/login" element={<SellerLogin />} />
-            <Route path="/seller" element={<SellerLayout />}>
+
+            <Route path="/seller" element={
+                <SellerRoute>
+                    <SellerLayout />
+                </SellerRoute>
+            }>
+
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="products" element={<Products />} />
                 <Route path="add-product" element={<AddProduct />} />
                 <Route path="orders" element={<SellerOrders />} />
+
             </Route>
 
             {/* ADMIN */}

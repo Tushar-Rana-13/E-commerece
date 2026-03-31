@@ -28,7 +28,11 @@ localStorage.setItem("user",JSON.stringify(res.data.user))
 
 alert("Login successful")
 
-navigate("/")
+if(res.data.user.role === "seller"){
+  navigate("/seller/dashboard")
+}else{
+  navigate("/")
+}
 
 }catch(err){
 alert(err.response?.data?.message || "Error")

@@ -1,55 +1,61 @@
+import { useEffect, useState } from "react"
+import axios from "axios"
+import API from "../../api"
+
 function Products(){
 
-const products = [
+const [products,setProducts] = useState([])
 
-{ id:1, name:"Laptop", price:50000 },
-{ id:2, name:"Headphones", price:2000 },
-{ id:3, name:"Smart Watch", price:4000 }
+useEffect(()=>{
 
-]
+const fetchProducts = async ()=>{
+
+try{
+
+const token = localStorage.getItem("token")
+
+const res = await axios.get(`${API}/products/my`,{
+headers:{
+Authorization:`Bearer ${token}`
+}
+})
+
+setProducts(res.data)
+
+}catch(err){
+console.log(err)
+}
+
+}
+
+fetchProducts()
+
+},[])
 
 return(
 
-<div>
+<div style={{padding:"20px"}}>
 
-<h1>Your Products</h1>
+<h2>My Products</h2>
 
-<table border="1" cellPadding="10">
+{products.length === 0 ? (
+<p>No products added</p>
+) : (
 
-<thead>
+products.map(p=>(
+<div key={p._id} style={{border:"1px solid #ccc",margin:"10px",padding:"10px"}}>
 
-<tr>
-<th>Name</th>
-<th>Price</th>
-<th>Action</th>
-</tr>
+<img 
+src={`http://localhost:5000${p.image}`} 
+width="150"
+/>
+<h3>{p.title}</h3>
+<p>₹{p.price}</p>
 
-</thead>
+</div>
+))
 
-<tbody>
-
-{products.map(product =>(
-
-<tr key={product.id}>
-
-<td>{product.name}</td>
-
-<td>₹{product.price}</td>
-
-<td>
-
-<button>Edit</button>
-<button>Delete</button>
-
-</td>
-
-</tr>
-
-))}
-
-</tbody>
-
-</table>
+)}
 
 </div>
 

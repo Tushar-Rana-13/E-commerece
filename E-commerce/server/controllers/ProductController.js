@@ -5,7 +5,10 @@ export const addProduct = async (req,res)=>{
 
 try{
 
-const {title,price,description,category,image,stock} = req.body
+const {title,price,description,category,stock} = req.body
+
+// image path from multer
+const image = req.file ? `/uploads/${req.file.filename}` : ""
 
 const product = await Product.create({
 title,
@@ -113,4 +116,21 @@ res.json({message:"Product deleted"})
 }catch(error){
 res.status(500).json({message:error.message})
 }
+}
+
+// GET MY PRODUCTS (Seller)
+export const getMyProducts = async (req,res)=>{
+
+try{
+
+const products = await Product.find({
+seller: req.user._id
+})
+
+res.json(products)
+
+}catch(error){
+res.status(500).json({message:error.message})
+}
+
 }

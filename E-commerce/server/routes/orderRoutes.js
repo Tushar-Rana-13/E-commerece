@@ -5,7 +5,9 @@ import {
   getMyOrders,
   getSellerOrders,
   getAllOrders,
-  updateOrderStatus
+  updateOrderStatus,
+  updateOrderStatusBySeller,
+  cancelOrder
 } from "../controllers/OrderController.js"
 
 import {
@@ -19,9 +21,11 @@ const router = express.Router()
 // CUSTOMER
 router.post("/", verifyToken, placeOrder)
 router.get("/my", verifyToken, getMyOrders)
+router.put("/cancel/:id", verifyToken, cancelOrder)
 
 // SELLER
 router.get("/seller", verifyToken, SellerAccess, getSellerOrders)
+router.put("/seller/:id" , verifyToken , SellerAccess , updateOrderStatusBySeller)
 
 // ADMIN
 router.get("/all", verifyToken, AdminAccess, getAllOrders)
