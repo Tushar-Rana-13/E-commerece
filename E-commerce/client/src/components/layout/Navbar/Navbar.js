@@ -85,8 +85,11 @@ function Navbar(){
 
         {/* CART */}
         <Link to="/cart" className="cart" style={{textDecoration:"none", color:"white"}}>
+          <div className="cart">
           <FaShoppingCart/>
-          <span>Cart ({totalItems})</span>
+          <span>Cart</span>
+          <span className="cart_count">{totalItems}</span>
+        </div>
         </Link>
 
       </div>

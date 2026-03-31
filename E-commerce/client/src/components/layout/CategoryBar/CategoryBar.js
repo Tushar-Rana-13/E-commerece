@@ -1,28 +1,31 @@
+import { Link } from "react-router-dom"
 import "./CategoryBar.css"
 
-function CategoryBar(){
+function CategoryBar() {
 
-const categories=[
-"All",
-"Electronics",
-"Fashion",
-"Mobiles",
-"Home",
-"Beauty",
-"Sports"
-]
+    const categories = [
+        "All",
+        "electronics",
+        "fashion",
+        "home",
+        "clothes",
+        "mobiles",
+        "books"
+    ]
 
-return(
+    return (
 
-<div className="categoryBar">
+        <div className="categoryBar">
 
-{categories.map((cat,index)=>(
-<span key={index}>{cat}</span>
-))}
+            {categories.map(cat => (
+                <Link key={cat} to={`/category/${cat}`} className="categoryItem">
+                    {cat.toUpperCase()}
+                </Link>
+            ))}
 
-</div>
+        </div>
 
-)
+    )
 
 }
 

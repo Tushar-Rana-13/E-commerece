@@ -1,14 +1,14 @@
-.home {
-  background-color: #eaeded;
+.homeContainer {
+  padding: 20px 5%;
 }
 
-.hero img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
+.homeTitle {
+  margin-bottom: 20px;
 }
 
-.home-content {
-  margin-top: -150px;
-  padding: 0 5%;
-} 
+/* GRID */
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}

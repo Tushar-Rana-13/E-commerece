@@ -31,7 +31,7 @@ try{
 const token = localStorage.getItem("token")
 
 await axios.put(`${API}/orders/seller/${id}`,
-{ status },
+{ status: status },
 { headers:{ Authorization:`Bearer ${token}` } }
 )
 
@@ -55,9 +55,11 @@ return(
 <p>Total: ₹{order.totalAmount}</p>
 <p>Status: {order.status}</p>
 
-<select onChange={(e)=>updateStatus(order._id,e.target.value)}>
+<select 
+value={order.status}
+onChange={(e)=>updateStatus(order._id,e.target.value)}
+>
 
-<option>Change Status</option>
 <option value="Pending">Pending</option>
 <option value="Shipped">Shipped</option>
 <option value="Delivered">Delivered</option>

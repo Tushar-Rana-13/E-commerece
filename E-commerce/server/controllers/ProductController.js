@@ -30,10 +30,17 @@ res.status(500).json({message:error.message})
 
 // GET ALL PRODUCTS
 export const getProducts = async (req,res)=>{
-
 try{
 
-const products = await Product.find().populate("seller","name email")
+const {category} = req.query
+
+let filter = {}
+
+if(category && category !== "ALL"){
+filter.category = category.toLowerCase()
+}
+
+const products = await Product.find(filter)
 
 res.json(products)
 

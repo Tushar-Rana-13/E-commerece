@@ -1,0 +1,57 @@
+.ordersPage {
+  padding: 30px 5%;
+}
+
+/* CARD */
+.orderCard {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  background: white;
+}
+
+/* STATUS BADGES */
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* COLORS */
+.status.Pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status.Shipped {
+  background: #cce5ff;
+  color: #004085;
+}
+
+.status.Delivered {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status.Cancelled {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.cancelBtn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: #ff4d4d;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.cancelBtn:hover {
+  background: #e60000;
+}

@@ -122,7 +122,6 @@ res.status(500).json({message:error.message})
 
 // UPDATE ORDER STATUS (Seller)
 export const updateOrderStatusBySeller = async (req,res)=>{
-
 try{
 
 const order = await Order.findById(req.params.id).populate("products.product")
@@ -131,7 +130,6 @@ if(!order){
 return res.status(404).json({message:"Order not found"})
 }
 
-// check if seller owns any product in order
 const isSeller = order.products.some(item =>
 item.product.seller.toString() === req.user._id.toString()
 )
@@ -140,8 +138,12 @@ if(!isSeller){
 return res.status(403).json({message:"Not authorized"})
 }
 
-// update status
-order.status = req.body.status || order.status
+if(!req.body.status){
+return res.status(400).json({message:"Status required"})
+}
+
+// ✅ FIX
+order.status = req.body.status
 
 await order.save()
 
@@ -150,13 +152,12 @@ res.json(order)
 }catch(error){
 res.status(500).json({message:error.message})
 }
-
 }
 
+
+
 // Cancel Order (Customer)
-
 export const cancelOrder = async (req,res)=>{
-
 try{
 
 const order = await Order.findById(req.params.id)
@@ -165,16 +166,15 @@ if(!order){
 return res.status(404).json({message:"Order not found"})
 }
 
-// only owner can cancel
 if(order.user.toString() !== req.user._id.toString()){
 return res.status(403).json({message:"Not authorized"})
 }
 
-// only allow cancel if not delivered
 if(order.status === "Delivered"){
 return res.status(400).json({message:"Cannot cancel delivered order"})
 }
 
+// ✅ FIX
 order.status = "Cancelled"
 
 await order.save()
@@ -184,5 +184,4 @@ res.json(order)
 }catch(error){
 res.status(500).json({message:error.message})
 }
-
 }

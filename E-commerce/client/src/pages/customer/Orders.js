@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import API from "../../api"
+import "../../styles/Orders.css"
 
 function Orders(){
 
 const [orders,setOrders] = useState([])
 
-// ✅ Fetch Orders
 const fetchOrders = async ()=>{
 try{
-
 const token = localStorage.getItem("token")
 
 const res = await axios.get(`${API}/orders/my`,{
-headers:{
-Authorization:`Bearer ${token}`
-}
+headers:{ Authorization:`Bearer ${token}` }
 })
 
 setOrders(res.data)
@@ -25,7 +22,11 @@ console.log(err)
 }
 }
 
-// ✅ Cancel Order
+useEffect(()=>{
+fetchOrders()
+},[])
+
+// ✅ CANCEL FUNCTION
 const cancelOrder = async (id)=>{
 try{
 
@@ -36,39 +37,39 @@ headers:{ Authorization:`Bearer ${token}` }
 })
 
 alert("Order cancelled")
-
-fetchOrders()  // refresh list
+fetchOrders()
 
 }catch(err){
 console.log(err)
 }
 }
 
-// ✅ Load on mount
-useEffect(()=>{
-fetchOrders()
-},[])
-
 return(
 
-<div style={{padding:"20px"}}>
+<div className="ordersPage">
 
-<h1>My Orders</h1>
+<h2>My Orders</h2>
 
 {orders.length === 0 ? (
 <p>No orders yet</p>
 ) : (
 
 orders.map(order=>(
-<div key={order._id} style={{border:"1px solid #ccc",margin:"10px",padding:"10px"}}>
+<div key={order._id} className="orderCard">
 
-<h3>Order ID: {order._id}</h3>
+<h4>Order ID: {order._id}</h4>
 <p>Total: ₹{order.totalAmount}</p>
-<p>Status: {order.status}</p>
 
-{/* Disable cancel if delivered */}
+<span className={`status ${order.status}`}>
+{order.status}
+</span>
+
+{/* ✅ SHOW BUTTON ONLY WHEN ALLOWED */}
 {order.status !== "Delivered" && order.status !== "Cancelled" && (
-<button onClick={()=>cancelOrder(order._id)}>
+<button 
+className="cancelBtn"
+onClick={()=>cancelOrder(order._id)}
+>
 Cancel Order
 </button>
 )}

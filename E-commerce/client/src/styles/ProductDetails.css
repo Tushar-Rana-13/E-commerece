@@ -1,0 +1,43 @@
+.productDetails {
+  display: flex;
+  gap: 40px;
+  padding: 40px 5%;
+}
+
+/* IMAGE */
+.imageSection img {
+  width: 350px;
+  border-radius: 10px;
+}
+
+/* INFO */
+.infoSection {
+  max-width: 500px;
+}
+
+.infoSection h2 {
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 22px;
+  color: #b12704;
+  font-weight: bold;
+}
+
+.desc {
+  margin: 15px 0;
+  color: #555;
+}
+
+.infoSection button {
+  padding: 10px 20px;
+  background: #febd69;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.infoSection button:hover {
+  background: #f3a847;
+}
