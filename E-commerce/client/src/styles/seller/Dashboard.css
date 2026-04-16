@@ -1,0 +1,51 @@
+/* MAIN CONTAINER */
+.dashboard-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1f2937, #111827);
+  padding: 40px;
+  color: #f9fafb;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* TITLE */
+.dashboard-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* BUTTON WRAPPER */
+.dashboard-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* BUTTON STYLE */
+.dashboard-actions button {
+  background: #374151;
+  color: #f9fafb;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* HOVER EFFECT */
+.dashboard-actions button:hover {
+  background: #f59e0b;
+  color: #111827;
+  transform: translateY(-3px) scale(1.03);
+}
+
+/* ACTIVE CLICK */
+.dashboard-actions button:active {
+  transform: scale(0.97);
+}

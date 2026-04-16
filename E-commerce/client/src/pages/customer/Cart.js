@@ -5,10 +5,23 @@ import "../../styles/Cart.css"
 
 function Cart(){
 
-const { cart, removeFromCart } = useContext(CartContext)
+const { cart, removeFromCart, addToCart } = useContext(CartContext)
 const navigate = useNavigate()
 
-const total = cart.reduce((acc,item)=> acc + item.price,0)
+// decrease quantity
+const decreaseQty = (item)=>{
+  if(item.quantity === 1){
+    removeFromCart(item._id)
+  } else {
+    addToCart({ ...item, quantity: -1 })
+  }
+}
+
+// correct total
+const total = cart.reduce(
+  (acc,item)=> acc + item.price * item.quantity,
+  0
+)
 
 return(
 
@@ -25,14 +38,23 @@ return(
 {/* LEFT */}
 <div className="cartItems">
 
-{cart.map((item,index)=>(
-<div key={index} className="cartItem">
+{cart.map((item)=>(
+<div key={item._id} className="cartItem">
 
 <img src={item.image} alt="" />
 
 <div className="cartInfo">
+
 <h4>{item.title}</h4>
 <p>₹{item.price}</p>
+
+{/* 🔥 QUANTITY CONTROLS */}
+<div className="qtyBox">
+<button onClick={()=>decreaseQty(item)}>-</button>
+<span>{item.quantity}</span>
+<button onClick={()=>addToCart(item)}>+</button>
+</div>
+
 </div>
 
 <button onClick={()=>removeFromCart(item._id)}>
@@ -49,7 +71,7 @@ Remove
 
 <h3>Order Summary</h3>
 
-<p>Total Items: {cart.length}</p>
+<p>Total Items: {cart.reduce((acc,i)=> acc + i.quantity,0)}</p>
 <h2>Total: ₹{total}</h2>
 
 <button onClick={()=>navigate("/checkout")}>

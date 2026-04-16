@@ -7,23 +7,34 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([])
 
   // ADD TO CART
-  const addToCart = (product) => {
+  const addToCart = (product)=>{
 
-    setCart(prev => {
+setCart(prev=>{
 
-      const exist = prev.find(item => item._id === product._id)
+const exist = prev.find(item => item._id === product._id)
 
-      if (exist) {
-        return prev.map(item =>
-          item._id === product._id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      }
+if(exist){
 
-      return [...prev, { ...product, quantity: 1 }]
-    })
-  }
+// 🔥 handle decrement
+if(product.quantity === -1){
+return prev.map(item =>
+item._id === product._id
+? { ...item, quantity: item.quantity - 1 }
+: item
+)
+}
+
+// increment
+return prev.map(item =>
+item._id === product._id
+? { ...item, quantity: item.quantity + 1 }
+: item
+)
+}
+
+return [...prev, { ...product, quantity: 1 }]
+})
+}
 
   // REMOVE FROM CART
   const removeFromCart = (id) => {

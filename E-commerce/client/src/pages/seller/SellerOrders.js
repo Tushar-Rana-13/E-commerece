@@ -1,78 +1,97 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import API from "../../api"
+import "../../styles/seller/SellerOrders.css"
 
-function SellerOrders(){
+function SellerOrders() {
 
-const [orders,setOrders] = useState([])
+    const [orders, setOrders] = useState([])
 
-const fetchOrders = async ()=>{
-try{
-const token = localStorage.getItem("token")
+    const fetchOrders = async () => {
+        try {
+            const token = localStorage.getItem("token")
 
-const res = await axios.get(`${API}/orders/seller`,{
-headers:{ Authorization:`Bearer ${token}` }
-})
+            const res = await axios.get(`${API}/orders/seller`, {
+                headers: { Authorization: `Bearer ${token}` }
+            })
 
-setOrders(res.data)
+            setOrders(res.data)
 
-}catch(err){
-console.log(err)
-}
-}
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
-useEffect(()=>{
-fetchOrders()
-},[])
+    useEffect(() => {
+        fetchOrders()
+    }, [])
 
-const updateStatus = async (id,status)=>{
-try{
+    const updateStatus = async (id, status) => {
+        try {
 
-const token = localStorage.getItem("token")
+            const token = localStorage.getItem("token")
 
-await axios.put(`${API}/orders/seller/${id}`,
-{ status: status },
-{ headers:{ Authorization:`Bearer ${token}` } }
-)
+            await axios.put(`${API}/orders/seller/${id}`,
+                { status: status },
+                { headers: { Authorization: `Bearer ${token}` } }
+            )
 
-fetchOrders()
+            fetchOrders()
 
-}catch(err){
-console.log(err)
-}
-}
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
-return(
+    return (
 
-<div style={{padding:"20px"}}>
+        <div className="orders-container">
 
-<h2>Seller Orders</h2>
+            <h2 className="orders-title">Seller Orders</h2>
 
-{orders.map(order=>(
-<div key={order._id} style={{border:"1px solid #ccc",margin:"10px",padding:"10px"}}>
+            {orders.length === 0 ? (
+                <p className="no-orders">No orders yet</p>
+            ) : (
 
-<h3>Order ID: {order._id}</h3>
-<p>Total: ₹{order.totalAmount}</p>
-<p>Status: {order.status}</p>
+                <div className="orders-list">
 
-<select 
-value={order.status}
-onChange={(e)=>updateStatus(order._id,e.target.value)}
->
+                    {orders.map(order => (
+                        <div key={order._id} className="order-card">
 
-<option value="Pending">Pending</option>
-<option value="Shipped">Shipped</option>
-<option value="Delivered">Delivered</option>
+                            <div className="order-info">
+                                <h3>Order ID</h3>
+                                <p className="order-id">{order._id}</p>
 
-</select>
+                                <p><strong>Total:</strong> ₹{order.totalAmount}</p>
 
-</div>
-))}
+                                <p>
+                                    <strong>Status:</strong>
+                                    <span className={`status ${order.status.toLowerCase()}`}>
+                                        {order.status}
+                                    </span>
+                                </p>
+                            </div>
 
-</div>
+                            <div className="order-actions">
+                                <select
+                                    value={order.status}
+                                    onChange={(e) => updateStatus(order._id, e.target.value)}
+                                >
+                                    <option value="Pending">Pending</option>
+                                    <option value="Shipped">Shipped</option>
+                                    <option value="Delivered">Delivered</option>
+                                </select>
+                            </div>
 
-)
+                        </div>
+                    ))}
 
+                </div>
+
+            )}
+
+        </div>
+    )
 }
 
 export default SellerOrders

@@ -2,6 +2,7 @@ import { useState } from "react"
 import axios from "axios"
 import API from "../../api"
 import { useNavigate, Link } from "react-router-dom"
+import "../../styles/auth.css"
 
 function Login(){
 
@@ -42,9 +43,9 @@ alert(err.response?.data?.message || "Error")
 
 return(
 
-<div className="auth-container">
+<div className="authPage">
 
-<form className="auth-form" onSubmit={handleSubmit}>
+<form className="authCard" onSubmit={handleSubmit}>
 
 <h2>Login</h2>
 

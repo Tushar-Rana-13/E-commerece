@@ -1,0 +1,72 @@
+.authPage {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #232f3e, #131921);
+}
+
+/* CARD */
+.authCard {
+  background: white;
+  padding: 30px;
+  width: 320px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+/* TITLE */
+.authCard h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* INPUTS */
+.authCard input,
+.authCard select {
+  margin-bottom: 12px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+}
+
+.authCard input:focus,
+.authCard select:focus {
+  border-color: #febd69;
+}
+
+/* BUTTON */
+.authCard button {
+  padding: 10px;
+  background: #febd69;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 5px;
+  transition: 0.2s;
+}
+
+.authCard button:hover {
+  background: #f3a847;
+}
+
+/* LINK TEXT */
+.authCard p {
+  margin-top: 12px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.authCard a {
+  color: #007185;
+  text-decoration: none;
+}
+
+.authCard a:hover {
+  text-decoration: underline;
+}

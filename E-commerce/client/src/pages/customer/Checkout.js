@@ -2,6 +2,7 @@ import { useContext } from "react"
 import axios from "axios"
 import API from "../../api"
 import { CartContext } from "../../context/CartContext"
+import "../../styles/Checkout.css"
 
 function Checkout(){
 
@@ -39,11 +40,11 @@ alert(err.response?.data?.message || "Error placing order")
 
 return(
 
-<div style={{padding:"20px"}}>
+<div className="checkout-container">
 
-<h2>Checkout</h2>
+<h2 className="checkout-title">Checkout</h2>
 
-<button onClick={placeOrder}>
+<button className="place-order-btn" onClick={placeOrder}>
 Place Order
 </button>
 

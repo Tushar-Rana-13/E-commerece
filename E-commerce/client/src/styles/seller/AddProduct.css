@@ -1,0 +1,72 @@
+/* CONTAINER */
+.addproduct-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1f2937, #111827);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* CARD */
+.addproduct-card {
+  background: #ffffff;
+  padding: 30px;
+  width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+/* TITLE */
+.addproduct-card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+/* INPUTS */
+.addproduct-card input {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+/* FOCUS EFFECT */
+.addproduct-card input:focus {
+  border-color: #f59e0b;
+}
+
+/* FILE INPUT */
+.addproduct-card input[type="file"] {
+  border: none;
+}
+
+/* BUTTON */
+.addproduct-card button {
+  padding: 12px;
+  background: #f59e0b;
+  border: none;
+  border-radius: 8px;
+  color: #111827;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+/* HOVER */
+.addproduct-card button:hover {
+  background: #d97706;
+  transform: translateY(-2px);
+}
+
+/* ACTIVE */
+.addproduct-card button:active {
+  transform: scale(0.97);
+}

@@ -1,66 +1,71 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import API from "../../api"
+import "../../styles/seller/Products.css"
 
-function Products(){
+function Products() {
 
-const [products,setProducts] = useState([])
+    const [products, setProducts] = useState([])
 
-useEffect(()=>{
+    useEffect(() => {
 
-const fetchProducts = async ()=>{
+        const fetchProducts = async () => {
 
-try{
+            try {
 
-const token = localStorage.getItem("token")
+                const token = localStorage.getItem("token")
 
-const res = await axios.get(`${API}/products/my`,{
-headers:{
-Authorization:`Bearer ${token}`
-}
-})
+                const res = await axios.get(`${API}/products/my`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
 
-setProducts(res.data)
+                setProducts(res.data)
 
-}catch(err){
-console.log(err)
-}
+            } catch (err) {
+                console.log(err)
+            }
 
-}
+        }
 
-fetchProducts()
+        fetchProducts()
 
-},[])
+    }, [])
 
-return(
+    return (
 
-<div style={{padding:"20px"}}>
+        <div className="products-container">
 
-<h2>My Products</h2>
+            <h2 className="products-title">My Products</h2>
 
-{products.length === 0 ? (
-<p>No products added</p>
-) : (
+            {products.length === 0 ? (
+                <p className="no-products">No products added</p>
+            ) : (
 
-products.map(p=>(
-<div key={p._id} style={{border:"1px solid #ccc",margin:"10px",padding:"10px"}}>
+                <div className="products-grid">
 
-<img 
-src={`http://localhost:5000${p.image}`} 
-width="150"
-/>
-<h3>{p.title}</h3>
-<p>₹{p.price}</p>
+                    {products.map(p => (
+                        <div key={p._id} className="product-card">
 
-</div>
-))
+                            <img
+                                src={`http://localhost:5000${p.image}`}
+                                alt={p.title}
+                            />
 
-)}
+                            <h3>{p.title}</h3>
+                            <p className="price">₹{p.price}</p>
 
-</div>
+                        </div>
+                    ))}
 
-)
+                </div>
 
+            )}
+
+        </div>
+
+    )
 }
 
 export default Products

@@ -1,0 +1,103 @@
+/* CONTAINER */
+.orders-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1f2937, #111827);
+  padding: 40px;
+  color: #f9fafb;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* TITLE */
+.orders-title {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+/* EMPTY TEXT */
+.no-orders {
+  text-align: center;
+  opacity: 0.8;
+}
+
+/* LIST */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* CARD */
+.order-card {
+  background: #ffffff;
+  color: #111827;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transition: 0.3s;
+}
+
+/* HOVER */
+.order-card:hover {
+  transform: translateY(-4px);
+}
+
+/* INFO */
+.order-info h3 {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #6b7280;
+}
+
+.order-id {
+  font-size: 13px;
+  margin-bottom: 10px;
+  word-break: break-all;
+}
+
+/* STATUS BADGES */
+.status {
+  margin-left: 8px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* DIFFERENT STATUS COLORS */
+.status.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status.shipped {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.status.delivered {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+/* ACTIONS */
+.order-actions select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .order-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
